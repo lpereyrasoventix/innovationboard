@@ -1341,20 +1341,26 @@ function renderInicio(){
 
  <!-- Stats -->
  <div class="stat-grid">
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);" class="stat-card roi-sc sc-inicio"><div class="sc-shine"></div>
-   <div class="stat-emoji">💡</div>
-   <div class="stat-val" id="st0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div>
-   <div class="stat-label" style="color:rgba(255,255,255,0.82);">Ideas enviadas</div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);">
+   <div class="sc-shine"></div>
+   <div class="sc-glass-overlay"></div>
+   <div class="stat-emoji" style="position:relative;z-index:1;">💡</div>
+   <div class="stat-val" id="st0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);position:relative;z-index:1;">0</div>
+   <div class="stat-label" style="color:rgba(255,255,255,0.88);position:relative;z-index:1;">Ideas enviadas</div>
   </div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);"><div class="sc-shine"></div>
-   <div class="stat-emoji">✅</div>
-   <div class="stat-val" id="st1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div>
-   <div class="stat-label" style="color:rgba(255,255,255,0.82);">Procesadas</div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);">
+   <div class="sc-shine"></div>
+   <div class="sc-glass-overlay"></div>
+   <div class="stat-emoji" style="position:relative;z-index:1;">✅</div>
+   <div class="stat-val" id="st1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);position:relative;z-index:1;">0</div>
+   <div class="stat-label" style="color:rgba(255,255,255,0.88);position:relative;z-index:1;">Procesadas</div>
   </div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);"><div class="sc-shine"></div>
-   <div class="stat-emoji">❤️</div>
-   <div class="stat-val" id="st2" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div>
-   <div class="stat-label" style="color:rgba(255,255,255,0.82);">Likes recibidos</div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);">
+   <div class="sc-shine"></div>
+   <div class="sc-glass-overlay"></div>
+   <div class="stat-emoji" style="position:relative;z-index:1;">❤️</div>
+   <div class="stat-val" id="st2" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);position:relative;z-index:1;">0</div>
+   <div class="stat-label" style="color:rgba(255,255,255,0.88);position:relative;z-index:1;">Likes recibidos</div>
   </div>
  </div>
 
@@ -1440,12 +1446,31 @@ function renderCarousel(evs){
 ══════════════════════════════════════════════════ */
 .sc-inicio .sc-shine {
   position: absolute;
-  top: -60%; left: -80%;
-  width: 55%; height: 220%;
-  background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.26) 50%, transparent 70%);
-  transform: skewX(-15deg);
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,255,255,0.08) 50%,
+    rgba(255,255,255,0) 100%
+  );
   pointer-events: none;
-  animation: shineSlide 3.5s ease-in-out infinite;
+}
+/* Respiración suave — cada card con fase distinta para dar vida */
+.stat-grid .sc-inicio:nth-child(1) .sc-shine,
+.p-stat-grid .sc-inicio:nth-child(1) .sc-shine {
+  animation: breathe 7s ease-in-out infinite;
+  animation-delay: 0s;
+}
+.stat-grid .sc-inicio:nth-child(2) .sc-shine,
+.p-stat-grid .sc-inicio:nth-child(2) .sc-shine {
+  animation: breathe 7s ease-in-out infinite;
+  animation-delay: 2.3s;
+}
+.stat-grid .sc-inicio:nth-child(3) .sc-shine,
+.p-stat-grid .sc-inicio:nth-child(3) .sc-shine {
+  animation: breathe 7s ease-in-out infinite;
+  animation-delay: 4.6s;
 }
 .sc-inicio:hover {
   transform: translateY(-8px) scale(1.04);
@@ -1453,12 +1478,16 @@ function renderCarousel(evs){
   box-shadow: 0 22px 50px rgba(0,0,0,0.3), 0 8px 18px rgba(0,0,0,0.16) !important;
   z-index: 2;
 }
-.sc-inicio:hover .sc-shine { animation: shineSlide 1s ease-in-out infinite; }
-@keyframes shineSlide {
-  0%   { left: -80%; opacity: 0; }
-  8%   { opacity: 1; }
-  55%  { left: 160%; opacity: 0.7; }
-  100% { left: 160%; opacity: 0; }
+.sc-inicio:hover .sc-shine {
+  animation: none !important;
+  opacity: 0.18;
+}
+@keyframes breathe {
+  0%   { opacity: 0;    transform: scale(0.92); }
+  30%  { opacity: 0.22; transform: scale(1.04); }
+  60%  { opacity: 0.10; transform: scale(0.98); }
+  80%  { opacity: 0.18; transform: scale(1.02); }
+  100% { opacity: 0;    transform: scale(0.92); }
 }
 
 /* ══════════════════════════════════════════════════
@@ -1548,6 +1577,57 @@ function renderCarousel(evs){
 @keyframes borderSpin {
   from { --roi-angle: 0deg; }
   to   { --roi-angle: 360deg; }
+}
+
+/* ── Liquid Glass overlay para stat cards de perfil/inicio ── */
+.sc-liquid {
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(14px) saturate(180%);
+  -webkit-backdrop-filter: blur(14px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.38);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5),
+              inset 0 -1px 0 rgba(0,0,0,0.06);
+}
+/* El gradiente de color va como ::before detrás del glass */
+.sc-liquid-wrap {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.sc-liquid-wrap .sc-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-lg);
+  z-index: 0;
+}
+.sc-liquid-wrap > *:not(.sc-bg):not(.sc-shine) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Glass overlay encima del gradiente de color */
+.sc-glass-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border-top: 1px solid rgba(255,255,255,0.45);
+  border-left: 1px solid rgba(255,255,255,0.30);
+  z-index: 0;
+  pointer-events: none;
+}
+/* Reflejo superior brillante */
+.sc-glass-overlay::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 45%;
+  background: linear-gradient(180deg,
+    rgba(255,255,255,0.28) 0%,
+    transparent 100%);
+  border-radius: inherit;
 }
 </style>`;
 }
@@ -2407,10 +2487,10 @@ function renderPerfil(){
    <div style="margin-top:10px;"><span class="chip ${S.user.role==="innovation"?"role-innov":"role-collab"}">${S.user.role==="innovation"?"⚡ Equipo Innovación":"👤 Colaborador"}</span></div>
   </div>
  </div>
- <div class="stat-grid" style="margin-bottom:18px;">
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);"><div class="sc-shine"></div><div class="stat-emoji">💡</div><div class="stat-val" id="pst0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Ideas enviadas</div></div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);"><div class="sc-shine"></div><div class="stat-emoji">✅</div><div class="stat-val" id="pst1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Aprobadas</div></div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);"><div class="sc-shine"></div><div class="stat-emoji">❤️</div><div class="stat-val" id="pst2">0</div><div class="stat-label">Likes recibidos</div></div>
+ <div class="stat-grid p-stat-grid" style="margin-bottom:18px;">
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">💡</div><div class="stat-val" id="pst0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Ideas enviadas</div></div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">✅</div><div class="stat-val" id="pst1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Aprobadas</div></div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">❤️</div><div class="stat-val" id="pst2">0</div><div class="stat-label">Likes recibidos</div></div>
  </div>
  <!-- Edit form -->
  <div class="gl2" style="border-radius:var(--r-xl);padding:20px;margin-bottom:16px;">
