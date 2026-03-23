@@ -1341,21 +1341,21 @@ function renderInicio(){
 
  <!-- Stats -->
  <div class="stat-grid">
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);">
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(0,107,117,0.55),rgba(0,196,212,0.45));box-shadow:0 6px 28px rgba(0,107,117,0.35);">
    <div class="sc-shine"></div>
    <div class="sc-glass-overlay"></div>
    <div class="stat-emoji" style="position:relative;z-index:1;">💡</div>
    <div class="stat-val" id="st0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);position:relative;z-index:1;">0</div>
    <div class="stat-label" style="color:rgba(255,255,255,0.88);position:relative;z-index:1;">Ideas enviadas</div>
   </div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);">
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(26,158,74,0.55),rgba(48,209,88,0.45));box-shadow:0 6px 28px rgba(48,209,88,0.35);">
    <div class="sc-shine"></div>
    <div class="sc-glass-overlay"></div>
    <div class="stat-emoji" style="position:relative;z-index:1;">✅</div>
    <div class="stat-val" id="st1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);position:relative;z-index:1;">0</div>
    <div class="stat-label" style="color:rgba(255,255,255,0.88);position:relative;z-index:1;">Procesadas</div>
   </div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);">
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(192,57,43,0.55),rgba(255,69,58,0.45));box-shadow:0 6px 28px rgba(255,69,58,0.35);">
    <div class="sc-shine"></div>
    <div class="sc-glass-overlay"></div>
    <div class="stat-emoji" style="position:relative;z-index:1;">❤️</div>
@@ -1610,24 +1610,37 @@ function renderCarousel(evs){
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: rgba(255,255,255,0.18);
-  backdrop-filter: blur(12px) saturate(160%);
-  -webkit-backdrop-filter: blur(12px) saturate(160%);
-  border-top: 1px solid rgba(255,255,255,0.45);
-  border-left: 1px solid rgba(255,255,255,0.30);
+  background: rgba(255,255,255,0.22);
+  backdrop-filter: blur(18px) saturate(200%);
+  -webkit-backdrop-filter: blur(18px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.5);
+  border-bottom: 1px solid rgba(255,255,255,0.15);
   z-index: 0;
   pointer-events: none;
 }
-/* Reflejo superior brillante */
-.sc-glass-overlay::after {
+/* Reflejo superior — franja más pronunciada */
+.sc-glass-overlay::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 45%;
+  height: 50%;
   background: linear-gradient(180deg,
-    rgba(255,255,255,0.28) 0%,
+    rgba(255,255,255,0.36) 0%,
+    rgba(255,255,255,0.08) 60%,
     transparent 100%);
   border-radius: inherit;
+}
+/* Punto de luz en esquina superior izquierda */
+.sc-glass-overlay::after {
+  content: '';
+  position: absolute;
+  top: -20%; left: -10%;
+  width: 60%; height: 60%;
+  background: radial-gradient(ellipse,
+    rgba(255,255,255,0.25) 0%,
+    transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 </style>`;
 }
@@ -2195,7 +2208,7 @@ function renderTablaView(){
  return`
  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
   <div class="stat-card roi-sc sc-tablero" style="background:linear-gradient(135deg,#4a4a6a,#7a7a9a);box-shadow:0 6px 24px rgba(70,70,120,0.4);"><div class="sc-shine"></div><div class="stat-emoji" style="font-size:18px;margin-bottom:6px;">💡</div><div style="font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;">Total ideas</div><div style="font-size:30px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${totals.all}</div></div>
-  <div class="stat-card roi-sc sc-tablero" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);"><div class="sc-shine"></div><div class="stat-emoji" style="font-size:18px;margin-bottom:6px;">⬡</div><div style="font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;">Core</div><div style="font-size:30px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${totals.Core}</div></div>
+  <div class="stat-card roi-sc sc-tablero" style="background:linear-gradient(135deg,rgba(0,107,117,0.55),rgba(0,196,212,0.45));box-shadow:0 6px 28px rgba(0,107,117,0.35);"><div class="sc-shine"></div><div class="stat-emoji" style="font-size:18px;margin-bottom:6px;">⬡</div><div style="font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;">Core</div><div style="font-size:30px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${totals.Core}</div></div>
   <div class="stat-card roi-sc sc-tablero" style="background:linear-gradient(135deg,#0055D4,#0A84FF);box-shadow:0 6px 24px rgba(10,132,255,0.45);"><div class="sc-shine"></div><div class="stat-emoji" style="font-size:18px;margin-bottom:6px;">◈</div><div style="font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px;">Adyacente</div><div style="font-size:30px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${totals.Adyacente}</div></div>
   <div class="stat-card roi-sc sc-tablero" style="background:linear-gradient(135deg,#7B2FBE,#BF5AF2);box-shadow:0 6px 24px rgba(191,90,242,0.45);"><div class="sc-shine"></div><div class="stat-emoji" style="font-size:18px;margin-bottom:6px;">✦</div><div style="font-size:11px;color:rgba(255,255,255,0.72);font-weight:700;text-transform:uppercase;letter-spacing:0.02em;font-size:9.5px;margin-bottom:5px;">Transformacional</div><div style="font-size:30px;font-weight:900;color:#fff;letter-spacing:-1px;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${totals.Transformacional}</div></div>
  </div>
@@ -2334,7 +2347,7 @@ function renderROIView(){
   <div class="stat-card roi-sc sc-roi" style="background:linear-gradient(135deg,#B8860B,#FF9F0A);box-shadow:0 6px 24px rgba(255,159,10,0.45);"><div class="sc-shine"></div><div class="stat-emoji">💰</div><div class="stat-val" style="font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">$${totInv.toLocaleString("es")}</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Total invertido</div></div>
   <div class="stat-card roi-sc sc-roi" style="background:linear-gradient(135deg,#0055D4,#0A84FF);box-shadow:0 6px 24px rgba(10,132,255,0.45);"><div class="sc-shine"></div><div class="stat-emoji">📈</div><div class="stat-val" style="font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">$${totRec.toLocaleString("es")}</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Total recuperado</div></div>
   <div class="stat-card roi-sc sc-roi" style="background:${roiPct>=0?"linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);":"linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);"}"><div class="sc-shine"></div><div class="stat-emoji">🎯</div><div class="stat-val" style="font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${roiPct}%</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">ROI Global</div></div>
-  <div class="stat-card roi-sc sc-roi" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);"><div class="sc-shine"></div><div class="stat-emoji">⚡</div><div class="stat-val" style="font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${roiIdeas.length}</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Iniciativas activas</div></div>
+  <div class="stat-card roi-sc sc-roi" style="background:linear-gradient(135deg,rgba(0,107,117,0.55),rgba(0,196,212,0.45));box-shadow:0 6px 28px rgba(0,107,117,0.35);"><div class="sc-shine"></div><div class="stat-emoji">⚡</div><div class="stat-val" style="font-size:22px;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">${roiIdeas.length}</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Iniciativas activas</div></div>
  </div>
  <div style="font-size:15px;font-weight:750;margin-bottom:12px;">Gestión de ROI por Iniciativa</div>
  <div style="font-size:12px;color:var(--text-secondary);margin-bottom:14px;">Haz clic en cada iniciativa para registrar inversión, recuperación y proyección.</div>
@@ -2488,9 +2501,9 @@ function renderPerfil(){
   </div>
  </div>
  <div class="stat-grid p-stat-grid" style="margin-bottom:18px;">
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#006B75,#00C4D4);box-shadow:0 6px 24px rgba(0,107,117,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">💡</div><div class="stat-val" id="pst0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Ideas enviadas</div></div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#1a9e4a,#30D158);box-shadow:0 6px 24px rgba(48,209,88,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">✅</div><div class="stat-val" id="pst1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Aprobadas</div></div>
-  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,#c0392b,#FF453A);box-shadow:0 6px 24px rgba(255,69,58,0.45);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">❤️</div><div class="stat-val" id="pst2">0</div><div class="stat-label">Likes recibidos</div></div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(0,107,117,0.55),rgba(0,196,212,0.45));box-shadow:0 6px 28px rgba(0,107,117,0.35);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">💡</div><div class="stat-val" id="pst0" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Ideas enviadas</div></div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(26,158,74,0.55),rgba(48,209,88,0.45));box-shadow:0 6px 28px rgba(48,209,88,0.35);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">✅</div><div class="stat-val" id="pst1" style="color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.2);">0</div><div class="stat-label" style="color:rgba(255,255,255,0.82);">Aprobadas</div></div>
+  <div class="stat-card roi-sc sc-inicio" style="background:linear-gradient(135deg,rgba(192,57,43,0.55),rgba(255,69,58,0.45));box-shadow:0 6px 28px rgba(255,69,58,0.35);"><div class="sc-shine"></div><div class="sc-glass-overlay"></div><div class="stat-emoji" style="position:relative;z-index:1;">❤️</div><div class="stat-val" id="pst2">0</div><div class="stat-label">Likes recibidos</div></div>
  </div>
  <!-- Edit form -->
  <div class="gl2" style="border-radius:var(--r-xl);padding:20px;margin-bottom:16px;">
